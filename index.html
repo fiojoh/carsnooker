@@ -1,0 +1,61 @@
+<!-- Red Yellow Green Brown Blue Pink Black-->
+<!-- 1 2 3 4 5 6 7 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<title>Car Snooker</title>
+</head>
+<body>
+	<div id="setup">
+		<ul id="names"></ul>
+
+		<label for="enterName"> Enter Name: </label>
+		<input type="text" name="enterName" id="enterName">
+
+		<br>
+
+		<button onclick="addName()">Add Name</button>
+		<p id="enterNameErr" style="color: red;"></p>
+
+		<label for="enterDuration"> Enter Duration: </label>
+		<input type="text" name="enterDuration" id="enterDuration" value="60">
+
+		<br>
+
+		<button onclick="start()"> Start </button>
+	</div>
+
+	<div id="turn" style="display: none;">
+		<h1 id="turnName"></h1>
+		<h2 id="timer"></h2>
+
+		<div id="scoreButtons">
+			<button id="red" style="background: red; color: white;" onclick="score(1)">Red</button>
+			<button id="yellow" class="color" style="background: yellow;" onclick="score(2)">Yellow</button>
+			<button id="green" class="color" style="background: green;" onclick="score(3)">Green</button>
+			<button id="brown" class="color" style="background: brown;" onclick="score(4)">Brown</button>
+			<button id="blue" class="color" style="background: blue; color: white;" onclick="score(5)">Blue</button>
+			<button id="pink" class="color" style="background: pink;" onclick="score(6)">Pink</button>
+			<button id="black" class="color" style="background: black; color: white;" onclick="score(7)">Black</button>
+
+		</div>
+
+		<button onclick="nextTurn()" id="nextTurn">Next</button>
+	</div>
+
+	<div id="end">
+		<h1 id="gameOver" style="display: none;"> The game has ended </h1>
+		<table id="leaderboard"></table>
+	</div>
+
+
+	<script src="main.js"></script>
+
+</body>
+</html>

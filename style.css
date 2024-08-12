@@ -1,0 +1,53 @@
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+#setup, #turn, #end {
+	width: 90%;
+	margin: auto;
+}
+
+#setup label {
+	float: left;
+	margin-bottom: 10px;
+
+}
+
+#setup input {
+	float: right;
+	width: 60%;
+	margin-bottom: 10px;
+}
+
+button {
+	width: 100%;
+	padding: 10px;
+	margin: 5px;
+}
+
+#leaderboard {
+	margin-top: 20px;
+}
+
+table {
+	width: 100%;
+/*	border-collapse: collapse;*/
+}
+
+th, td {
+	padding-right: 30px;
+	padding-bottom: 10px;
+}
+/*
+tr {
+	width: 100%;
+}
+
+th {
+	width: 50%;
+}
+
+table, th, td {
+	border: 1px solid;
+}*/
