@@ -32,8 +32,7 @@ const redsRemainingText = document.getElementById("redRemaining");
 const timer = document.getElementById("timer");
 const nextButton = document.getElementById("nextTurn");
 
-const order = [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 2, 3, 4, 5, 6, 7];
-
+var order = []
 // const order = [1, 0]
 
 const redButton    = document.getElementById("red");
@@ -48,7 +47,6 @@ const ballButtons = [redButton, yellowButton, greenButton, brownButton, blueButt
 
 function playersIncludes(name) {
 	for (const player in players) {
-
 		if (players[player].name == name) {
 			return true;
 		}
@@ -82,6 +80,18 @@ function addName() {
 	nameList.appendChild(name);
 
 	nameEntry.value = "";
+}
+
+function generateOrder(numReds) {
+	var order = []
+
+	for (var i = 0; i < numReds; i++) {
+		order.push(1, 0);
+	}
+
+	order.push(2, 3, 4, 5, 6, 7);
+
+	return order;
 }
 
 function updateLeaderboard() {
@@ -129,7 +139,10 @@ function start() {
 	document.getElementById("setup").style.display = "none";
 	document.getElementById("turn").style.display = "block";
 
+	redsRemaining = document.getElementById("numReds").value;
 	turnDuration = document.getElementById("enterDuration").value;
+
+	order = generateOrder(redsRemaining);
 
 	redsRemainingText.textContent = "Reds Remaining: " + redsRemaining;
 
