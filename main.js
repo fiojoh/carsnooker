@@ -109,8 +109,12 @@ function updateLeaderboard() {
 
 	leaderboard.appendChild(headers);
 
-	for (player in players) {
-		leaderboard.appendChild(players[player].tableRow);
+	playersRanked = [...players];
+
+	playersRanked.sort((a,b) => b.score - a.score);
+
+	for (player in playersRanked) {
+		leaderboard.appendChild(playersRanked[player].tableRow);
 	}
 }
 
