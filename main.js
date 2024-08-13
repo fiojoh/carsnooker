@@ -28,6 +28,7 @@ var currentTurn = 0;
 var currentBall = 0;
 
 const turnName = document.getElementById("turnName");
+const redsRemainingText = document.getElementById("redRemaining");
 const timer = document.getElementById("timer");
 const nextButton = document.getElementById("nextTurn");
 
@@ -130,6 +131,8 @@ function start() {
 
 	turnDuration = document.getElementById("enterDuration").value;
 
+	redsRemainingText.textContent = "Reds Remaining: " + redsRemaining;
+
 	nextTurn();
 }
 
@@ -179,6 +182,11 @@ function nextTurn() {
 
 function score(ball) {
 	players[currentTurn].score += ball;
+
+	if (ball == 1) {
+		redsRemaining--;
+		redsRemainingText.textContent = "Reds Remaining: " + redsRemaining;
+	}
 
 	currentBall++;
 
