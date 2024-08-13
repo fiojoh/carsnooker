@@ -169,6 +169,8 @@ function nextTurn() {
 
 			currentTurn %= players.length;
 
+			turnName.textContent = "Next up it is " + players[currentTurn].name + "'s turn. ";
+
 			nextButton.style.display = "block";
 
 		}
