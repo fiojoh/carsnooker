@@ -80,7 +80,7 @@ function addName() {
 
 	nameList.appendChild(name);
 
-	nameEntry.value = ""
+	nameEntry.value = "";
 }
 
 function updateLeaderboard() {
@@ -138,12 +138,18 @@ function nextTurn() {
 	document.getElementById("leaderboard").style.display = "none";
 	document.getElementById("scoreButtons").style.display = "block";
 
+	if (order[currentBall] == 0) {
+		currentBall++;
+	}
+
 	updateButtons();
 
 	turnName.textContent = "It is " + players[currentTurn].name + "'s turn. ";
 
 	timer.textContent = turnDuration + "s";
 	var timeRemaining = turnDuration - 1; 
+
+
 
 	let timerInterval = setInterval(function() {
 		timer.textContent = timeRemaining + "s";
