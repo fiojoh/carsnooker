@@ -1,7 +1,7 @@
 class Player {
-	constructor(name) {
+	constructor(name, score=0) {
 		this.name = name;
-		this.score = 0;
+		this.score = score;
 	}
 
 	get tableRow() {
@@ -19,6 +19,7 @@ class Player {
 	}
 }
 
+
 var players = []
 var turnDuration = 60;
 
@@ -33,7 +34,6 @@ const timer = document.getElementById("timer");
 const nextButton = document.getElementById("nextTurn");
 
 var order = []
-// const order = [1, 0]
 
 const redButton    = document.getElementById("red");
 const yellowButton = document.getElementById("yellow");
@@ -54,7 +54,12 @@ function playersIncludes(name) {
 	return false;
 }
 
-function addName() {
+function addName(name) {
+	if (name) {
+		players.push(new Player(name));
+		return
+	} 
+
 	const nameEntry = document.getElementById("enterName");
 	const nameEntryError = document.getElementById("enterNameErr");
 
@@ -148,13 +153,16 @@ function start() {
 
 	order = generateOrder(redsRemaining);
 
-	redsRemainingText.textContent = "Reds Remaining: " + redsRemaining;
+	redsRemainingText.textContent = redsRemaining + " Reds Remaining";
 
 	nextTurn();
 }
 
 function nextTurn() {
 	nextButton.style.display = "none";
+
+	document.getElementById("turn").style.textAlign = "left";
+
 	document.getElementById("leaderboard").style.display = "none";
 	document.getElementById("scoreButtons").style.display = "block";
 
@@ -164,12 +172,10 @@ function nextTurn() {
 
 	updateButtons();
 
-	turnName.textContent = "It is " + players[currentTurn].name + "'s turn. ";
+	turnName.textContent = "It's " + players[currentTurn].name + "'s turn. ";
 
 	timer.textContent = turnDuration + "s";
 	var timeRemaining = turnDuration - 1; 
-
-
 
 	let timerInterval = setInterval(function() {
 		timer.textContent = timeRemaining + "s";
@@ -178,10 +184,10 @@ function nextTurn() {
 
 		if (timeRemaining < 0) {
 			clearInterval(timerInterval);
-			timer.textContent = "Time's up";
+			timer.textContent = "";
 
 			document.getElementById("scoreButtons").style.display = "none";
-			document.getElementById("leaderboard").style.display = "block";
+			document.getElementById("leaderboard").style.display = "table";
 
 			updateLeaderboard();
 
@@ -189,7 +195,10 @@ function nextTurn() {
 
 			currentTurn %= players.length;
 
-			turnName.textContent = "Next up it is " + players[currentTurn].name + "'s turn. ";
+			document.getElementById("turn").style.textAlign = "center";
+
+			turnName.innerHTML = "Next up: " + players[currentTurn].name + "'s turn. ";
+
 
 			nextButton.style.display = "block";
 
@@ -197,25 +206,31 @@ function nextTurn() {
 	}, 1000);
 }
 
+function gameOver() {
+	document.getElementById("turn").style.display = "none";
+	document.getElementById("leaderboard").style.display = "table";
+	document.getElementById("gameOver").style.display = "block";
+	updateLeaderboard();
+}
+
 function score(ball) {
 	players[currentTurn].score += ball;
 
 	if (ball == 1) {
 		redsRemaining--;
-		redsRemainingText.textContent = "Reds Remaining: " + redsRemaining;
+		redsRemainingText.textContent = redsRemaining + " Reds Remaining";
 	}
 
 	currentBall++;
 
 	if (currentBall > order.length - 1) {
-		document.getElementById("turn").style.display = "none";
-		document.getElementById("leaderboard").style.display = "block";
-		document.getElementById("gameOver").style.display = "block";
-		updateLeaderboard();
+		gameOver();
 		return
 	}
 
 	updateButtons();
 }
 
-
+// addName("P1")
+// addName("P2")
+// start()

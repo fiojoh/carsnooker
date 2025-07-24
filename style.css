@@ -1,59 +1,161 @@
+* {
+	box-sizing: border-box;
+}
+
 html, body {
 	margin: 0;
 	padding: 0;
 
 	font-size: 16px;
+	font-family: "Montserrat", serif;
+	color: #2c2c2c;
+	background: #e8e8e8;
 }
 
-#setup, #turn, #end {
+#resume, #setup, #turn, #end {
 	width: 90%;
 	margin: auto;
 }
 
+#resume {
+	text-align: center;
+}
+
+#setup h1 {
+	text-align: center;
+}
+
 #setup label {
-	float: left;
-	margin-bottom: 10px;
-	width:35%;
+	display: block;
+	text-align: left;
+	font-weight: bold;
+	margin-bottom: 6px;
+	margin-top: 12px;
 }
 
-#setup input {
-	float: right;
-	width: 60%;
-	margin-bottom: 10px;
-}
-
-#redRemaining {
-	float: right;
-}
-
-button {
+#setup input[type="text"], #setup input[type="number"], #setup button {
 	width: 100%;
-	padding: 10px;
-	margin: 5px;
+	padding: 12px;
+	font-size: 16px;
+	margin-bottom: 10px;
+	border-radius: 8px;
 }
+
+#setup input[type="text"], #setup input[type="number"] {
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+#addname {
+	margin-bottom: 50px !important;
+}
+
+#setup button {
+	border: none;
+	background: #3C3C3C;
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
 
 #leaderboard {
+	margin: auto;
+
 	margin-top: 20px;
+	text-align: center;
+	width: 100%;
+}
+
+#end {
+	text-align: center;
 }
 
 table {
 	width: 100%;
-/*	border-collapse: collapse;*/
+	border-collapse: collapse;
+	text-align: center;
 }
+
+
 
 th, td {
-	padding-right: 30px;
-	padding-bottom: 10px;
+	/*padding-right: 30px;*/
+	/*padding-bottom: 10px;*/
+      padding: 10px;
+      /*width: 50%;*/
+
 }
-/*
-tr {
+
+#turn {
+	margin-top: 35px;
+	position: relative;
+}
+
+#turnName {
+	font-size: 24px;
+	font-weight: bold;
+	margin: 0;
+	display: inline;
+
+}
+
+#redRemaining {
+	font-size: 16px;
+}
+
+#timer {
+	font-size: 24px;
+	position: absolute;
+	margin: 0;
+
+	top: 0;
+	right: 0;
+}
+
+#red {
+	background: #C85151;
+}
+
+#yellow {
+	background: #C9A034;
+}
+
+#green {
+	background: #6CA76C;
+}
+
+#brown {
+	background: #8A6A50;
+}
+
+#blue {
+	background: #547BA2;
+}
+
+#pink {
+	background: #D484A6;
+}
+
+#black {
+	background: #3C3C3C;
+}
+
+#nextTurn {
+	background: #3C3C3C;
+}
+
+#turn button {
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
+	border: none;
 	width: 100%;
-}
+	height: 60px;
+	/*background: #3c3c3c;*/
 
-th {
-	width: 50%;
-}
+	font-size: 24px;
 
-table, th, td {
-	border: 1px solid;
-}*/
+	border-radius: 8px;
+	margin-bottom: 12px;
+}

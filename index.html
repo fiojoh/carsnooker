@@ -7,24 +7,29 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
 	<link rel="stylesheet" type="text/css" href="style.css">
 
 	<title>Car Snooker</title>
 </head>
 <body>
 	<div id="setup">
+		<h1>Car Snooker Scorer</h1>
+
 		<ul id="names"></ul>
 
-		<label for="enterName"> Enter Name: </label>
-		<input type="text" name="enterName" id="enterName">
+		<input type="text" name="enterName" id="enterName" placeholder="Enter Player Name">
 
 		<br>
 
-		<button onclick="addName()">Add Name</button>
+		<button onclick="addName()" id="addname">Add Name</button>
 		<p id="enterNameErr" style="color: red;"></p>
 
-		<label for="enterDuration"> Enter Duration: </label>
-		<input type="text" name="enterDuration" id="enterDuration" value="60">
+		<label for="enterDuration"> Enter Duration (seconds): </label>
+		<input type="text" name="enterDuration" id="enterDuration" value="45">
 
 		<label for="numReds"> Number of Reds: </label>
 		<input type="text" name="numReds" id="numReds" value="15">
@@ -35,19 +40,21 @@
 	</div>
 
 	<div id="turn" style="display: none;">
+		<p id="turnName"></p>
+
+		<p id="timer"></p>
+
 		<p id="redRemaining"></p>
 
-		<h1 id="turnName"></h1>
-		<h2 id="timer"></h2>
 
 		<div id="scoreButtons">
-			<button id="red" style="background: red; color: white;" onclick="score(1)">Red</button>
-			<button id="yellow" class="color" style="background: yellow; color: black;" onclick="score(2)">Yellow</button>
-			<button id="green" class="color" style="background: green; color: white;" onclick="score(3)">Green</button>
-			<button id="brown" class="color" style="background: brown; color: white;" onclick="score(4)">Brown</button>
-			<button id="blue" class="color" style="background: blue; color: white;" onclick="score(5)">Blue</button>
-			<button id="pink" class="color" style="background: pink; color: black;" onclick="score(6)">Pink</button>
-			<button id="black" class="color" style="background: black; color: white;" onclick="score(7)">Black</button>
+			<button id="red"    class="red"    onclick="score(1)">Red</button>
+			<button id="yellow" class="color"  onclick="score(2)">Yellow</button>
+			<button id="green"  class="color"  onclick="score(3)">Green</button>
+			<button id="brown"  class="color"  onclick="score(4)">Brown</button>
+			<button id="blue"   class="color"  onclick="score(5)">Blue</button>
+			<button id="pink"   class="color"  onclick="score(6)">Pink</button>
+			<button id="black"  class="color"  onclick="score(7)">Black</button>
 
 		</div>
 
@@ -61,6 +68,5 @@
 
 
 	<script src="main.js"></script>
-
 </body>
 </html>
