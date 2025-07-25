@@ -193,7 +193,7 @@ function start() {
 }
 
 async function getVehicles() {
-	const url = "/vehicles.json"
+	const url = window.location.href + "vehicles.json"
 
 	const response = await fetch(url);
 	if (!response.ok) {

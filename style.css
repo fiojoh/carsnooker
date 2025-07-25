@@ -141,12 +141,12 @@ th, td {
 	background: #3C3C3C;
 }
 
-.extraButton {
-	color: white;
-}
-
 #nextTurn {
 	background: #3C3C3C;
+}
+
+.extraButton {
+	color: white;
 }
 
 #turn button {
