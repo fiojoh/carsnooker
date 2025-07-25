@@ -25,8 +25,12 @@ var turnDuration = 60;
 
 var redsRemaining = 15;
 
+var addedAfterRound = 3; // 0 for never
+
 var currentTurn = 0;
 var currentBall = 0;
+
+var timeOnColor = 0;
 
 const turnName = document.getElementById("turnName");
 const redsRemainingText = document.getElementById("redRemaining");
@@ -44,6 +48,25 @@ const pinkButton   = document.getElementById("pink");
 const blackButton  = document.getElementById("black");
 
 const ballButtons = [redButton, yellowButton, greenButton, brownButton, blueButton, pinkButton, blackButton];
+
+var addedItems = [];
+
+function extraButton() {
+	var button = document.createElement("button");
+	button.textContent = addedItems[Math.floor(Math.random()*addedItems.length)]
+	button.classList.add("extraButton")
+	button.onclick = function() { score(button) } 
+
+	var ballButtonContainer = document.getElementById("scoreButtons");
+
+	Array.from(ballButtonContainer.children).forEach((element) => {
+		if (element.style.display == "block") { 
+			button.dataset.score = element.dataset.score;
+		}
+	})
+
+	ballButtonContainer.appendChild(button);
+}
 
 function playersIncludes(name) {
 	for (const player in players) {
@@ -123,7 +146,15 @@ function updateLeaderboard() {
 	}
 }
 
-function updateButtons() { 
+function updateButtons(removeExtra=false) { 
+	if (removeExtra){
+		extraButtons = Array.from(document.getElementsByClassName("extraButton"));
+
+		if (extraButtons.length > 0) {
+			extraButtons.forEach((element) => element.remove());
+		}
+	}
+	
 	ballButtons.forEach((element) => element.style.display = "none");
 
 	if (order[currentBall] == 0){
@@ -150,12 +181,26 @@ function start() {
 
 	redsRemaining = document.getElementById("numReds").value;
 	turnDuration = document.getElementById("enterDuration").value;
+	addedAfterRound = document.getElementById("addedAfterRound").value;
+
+	if (addedAfterRound > 0) { getVehicles(); }
 
 	order = generateOrder(redsRemaining);
 
 	redsRemainingText.textContent = redsRemaining + " Reds Remaining";
 
 	nextTurn();
+}
+
+async function getVehicles() {
+	const url = "/vehicles.json"
+
+	const response = await fetch(url);
+	if (!response.ok) {
+		throw new Error(`Response status: ${response.status}`);
+	}
+
+	addedItems = await response.json();
 }
 
 function nextTurn() {
@@ -168,11 +213,19 @@ function nextTurn() {
 
 	if (order[currentBall] == 0) {
 		currentBall++;
+		timeOnColor = 0;
 	}
 
 	updateButtons();
 
 	turnName.textContent = "It's " + players[currentTurn].name + "'s turn. ";
+
+	timeOnColor++;
+
+	if (timeOnColor > addedAfterRound * players.length && addedAfterRound != 0) {
+		extraButton();
+		timeOnColor = 1;
+	}
 
 	timer.textContent = turnDuration + "s";
 	var timeRemaining = turnDuration - 1; 
@@ -213,7 +266,9 @@ function gameOver() {
 	updateLeaderboard();
 }
 
-function score(ball) {
+function score(btn) {
+	ball = parseInt(btn.dataset.score);
+
 	players[currentTurn].score += ball;
 
 	if (ball == 1) {
@@ -228,7 +283,9 @@ function score(ball) {
 		return
 	}
 
-	updateButtons();
+	updateButtons(true);
+
+	timeOnColor = 1;
 }
 
 // addName("P1")

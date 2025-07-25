@@ -34,6 +34,9 @@
 		<label for="numReds"> Number of Reds: </label>
 		<input type="text" name="numReds" id="numReds" value="15">
 
+		<label for="addedAfterRound"> Number of Rounds Before Added Vehicles (0 for never): </label>
+		<input type="text" name="addedAfterRound" id="addedAfterRound" value="3">
+
 		<br>
 
 		<button onclick="start()"> Start </button>
@@ -48,13 +51,13 @@
 
 
 		<div id="scoreButtons">
-			<button id="red"    class="red"    onclick="score(1)">Red</button>
-			<button id="yellow" class="color"  onclick="score(2)">Yellow</button>
-			<button id="green"  class="color"  onclick="score(3)">Green</button>
-			<button id="brown"  class="color"  onclick="score(4)">Brown</button>
-			<button id="blue"   class="color"  onclick="score(5)">Blue</button>
-			<button id="pink"   class="color"  onclick="score(6)">Pink</button>
-			<button id="black"  class="color"  onclick="score(7)">Black</button>
+			<button id="red"    class="red"    data-score=1 onclick="score(this)">Red</button>
+			<button id="yellow" class="color"  data-score=2 onclick="score(this)">Yellow</button>
+			<button id="green"  class="color"  data-score=3 onclick="score(this)">Green</button>
+			<button id="brown"  class="color"  data-score=4 onclick="score(this)">Brown</button>
+			<button id="blue"   class="color"  data-score=5 onclick="score(this)">Blue</button>
+			<button id="pink"   class="color"  data-score=6 onclick="score(this)">Pink</button>
+			<button id="black"  class="color"  data-score=7 onclick="score(this)">Black</button>
 
 		</div>
 
